@@ -19,8 +19,8 @@ Unpack node_modules.zip file and add extract entire folder to project root.
 Delete node_modules.zip file.
 
 Requiurements:
-Windows PC/Laptop
-Nitrado Console DayZ Gamer Server
-Discord
-NVM-for-Windows
-Visual Studio Code
+Windows PC/Laptop,
+Nitrado Console DayZ Gamer Server,
+Discord,
+NVM-for-Windows,
+Visual Studio Code.
