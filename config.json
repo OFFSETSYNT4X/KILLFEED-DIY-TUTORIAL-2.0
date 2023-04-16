@@ -1,0 +1,10 @@
+{
+	"CLIENTID": "Enter Bot Application ID Here",
+	"GUILDID": "Enter Discord Guild ID Here",
+	"PLATFORM": "Enter Platform Here",
+	"TOKEN": "Enter Bot Token Here",
+	"ID1": "Enter Nitrado Server ID Here",
+	"ID2" :"Enter Nitrado Server UserName Here",
+	"NITRATOKEN": "Enter Nitrado Long-Life Token Here",
+	"REGION": "Enter Nitrado Server Region Here"
+}
