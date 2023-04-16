@@ -15,5 +15,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-Unpack nodemodules.zip file and add extract entire folder to project root.
-Delete nodemodules.zip file.
+Unpack node_modules.zip file and add extract entire folder to project root.
+Delete node_modules.zip file.
