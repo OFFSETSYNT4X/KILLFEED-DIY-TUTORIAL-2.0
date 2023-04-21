@@ -24,3 +24,11 @@ Nitrado Console DayZ Gamer Server,
 Discord,
 NVM-for-Windows,
 Visual Studio Code.
+
+Commands:
+/admin killfeed setup          (Create Required Bot Channels)
+/admin killfeed start          (Start Killfeed)
+/admin killfeed stop           (kill Killfeed Project)
+/admin killfeed deathloc       (Toggle on/off death locations)
+/admin killfeed map            (Toggle Map Links Cherno/Livonia)
+/admin killfeed clear          (Clear Messages From Discord Channel (limit 100))
