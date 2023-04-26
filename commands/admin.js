@@ -577,7 +577,6 @@ module.exports = {
 							})
 							.catch(function (error) {
 								console.log(error);
-								interaction.channel.send("**Error:** Nitrado API Appears To Be Down!").catch(function (error) {console.log(error);});
 							});
 							// Create a readable stream in order to parse log download link form file
 							var rl = readline.createInterface({
