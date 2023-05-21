@@ -29,12 +29,12 @@ const Tail = require('tail').Tail;
 const logFile = "./logs/log.ADM";
 const options= {separator: /[\r]{0,1}\n/, fromBeginning: false, useWatchFile: true, flushAtEOF: true, fsWatchOptions: {}, follow: true, nLines: false, logger: console}
 const tail = new Tail(logFile, options);
-var logStats = 0, logBytes = 0, logStats = 0, logSize = 0, logSizeRef = 0, lineCount = 0, lineRef = 0, dt0 = 0, valueRef = new Set();
+var logStats = 0, logBytes = 0, logSize = 0, logSizeRef = 0, lineCount = 0, lineRef = 0, dt0 = 0, valueRef = new Set();
 var colors = require('colors');
 var moment = require('moment-timezone');
 var iso;
-var linkLoc = " ", kfChannel = " ", linkChannel = " ";
-var logDt = " ", dt = new Date(), todayRef = " ", logSizeRef = 0, today = " ";
+var linkLoc = " ", kfChannel = " ";
+var logDt = " ", dt = new Date(), todayRef = " ", today = " ";
 var feedStart = Boolean;
 var readline = require('readline');
 
@@ -573,6 +573,8 @@ module.exports = {
 											})					
 										}
 									}
+								}else {
+									console.log(res);
 								}
 							})
 							.catch(function (error) {
