@@ -18,7 +18,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v10');
-const { Guild } = require('discord.js');
 const { CLIENTID, GUILDID, TOKEN } = require('./config.json');
 
 const commands = [];
@@ -44,6 +43,4 @@ const rest = new REST({version: '10'}).setToken(TOKEN);
   } catch (error) {
     console.error(error);
   }
-})().catch(function (error) {
-  console.log(error);
-});
+})().catch((error) => { console.error(error); });

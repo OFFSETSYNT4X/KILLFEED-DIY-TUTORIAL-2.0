@@ -18,9 +18,9 @@ require('dotenv').config();
 var fs = require('fs');
 if (!fs.existsSync("./logs/log.ADM")) {fs.writeFileSync("./logs/log.ADM", "");}
 if (!fs.existsSync("./logs/serverlog.ADM")) {fs.writeFileSync("./logs/serverlog.ADM", "");}
-const { Client, Collection, Intents, MessageAttachment, MessageEmbed } = require('discord.js');
-const { GUILDID, PLATFORM, TOKEN } = require('./config.json');
-const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });//, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, partials: ["MESSAGE", "CHANNEL", "REACTION"] });const nodeoutlook = require('nodejs-nodemailer-outlook');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { GUILDID, TOKEN } = require('./config.json');
+const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers] });//, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, partials: ["MESSAGE", "CHANNEL", "REACTION"] });const nodeoutlook = require('nodejs-nodemailer-outlook');
 const { isNull } = require('util');
 const path = require('path');
 var moment = require('moment-timezone');
@@ -67,15 +67,11 @@ bot.on('messageCreate', async message => {
 
 //Login Discord Bot
 bot.login(TOKEN)
-.catch(function (error) {
-    console.log(error);
-})
+.catch((error) => { console.error(error); })
 
 bot.on('ready', () => {
-	console.info(`Logged in as ${bot.user.tag}!`);
+	console.info(`Logged in as ${bot.user.username}!`);
 	console.log('KILLFEED IS ACTIVE!');
 });
 
-bot.on('error', function (err) {
-    console.log(err)
-});
+bot.on('error', (err) => { console.error(err) });

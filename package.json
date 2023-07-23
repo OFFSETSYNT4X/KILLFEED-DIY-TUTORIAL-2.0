@@ -5,16 +5,18 @@
   "main": "index.js",
   "scripts": {
     "register": "node -r dotenv/config register.js",
+    "remove": "node -r dotenv/config remove.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SYNT4X",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/rest": "^0.5.0",
+    "@discordjs/rest": "^1.7.1",
     "axios": "^0.21.4",
     "colors": "^1.4.0",
-    "discord-api-types": "^0.33.5",
-    "discord.js": "^13.8.0",
+    "discord-api-types": "^0.37.50",
+    "discord.js": "^14.11.0",
     "dotenv": "^8.2.0",
     "ini": "^3.0.0",
     "moment": "^2.29.3",

@@ -13,12 +13,9 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-
-const fs = require('node:fs');
 const path = require('node:path');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v10');
-const { Guild } = require('discord.js');
 const { CLIENTID, GUILDID, TOKEN } = require('./config.json');
 
 const rest = new REST({version: '10'}).setToken(TOKEN);
@@ -37,9 +34,5 @@ const rest = new REST({version: '10'}).setToken(TOKEN);
       return Promise.all(promises);
     });
     console.log('Successfully Removed DayZero (/) commands.');
-  } catch (error) {
-    console.error(error);
-  }
-})().catch(function (error) {
-  console.log(error);
-});
+  } catch (error) { console.error(error); }
+})().catch((error) => { console.error(error); });

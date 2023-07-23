@@ -1,10 +1,10 @@
 {
-	"CLIENTID": "Enter Bot Application ID Here",
-	"GUILDID": "Enter Discord Guild ID Here",
-	"PLATFORM": "Enter Platform Here",
-	"TOKEN": "Enter Bot Token Here",
-	"ID1": "Enter Nitrado Server ID Here",
-	"ID2" :"Enter Nitrado Server UserName Here",
-	"NITRATOKEN": "Enter Nitrado Long-Life Token Here",
-	"REGION": "Enter Nitrado Server Region Here"
+	"CLIENTID": "1024600217653354526",
+	"GUILDID": "959693430227894292",
+	"PLATFORM": "XBOX",
+	"TOKEN": "MTAyNDYwMDIxNzY1MzM1NDUyNg.GeVSt3.9FYWxpF1YxisEAD15BvLVaIlV2C36gtt3YZl24",
+	"ID1": "13353735",
+	"ID2" :"ni3663749_2",
+	"NITRATOKEN": "lzAJlDJiXq7Ayqq5iMZ-C8MagOvvLrNf4SVIM-aEMLLqIkq66UlxCr8HEy5bDGmrgRm2943da7H438U6W7Pv9Y8NENIUp7Cje6yy",
+	"REGION": "New_York"
 }
