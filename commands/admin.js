@@ -273,7 +273,7 @@ module.exports = {
 											if (config.showLoc === 1) {
 												const url = "https://thecodegang.com"
 												const link = hyperlink("Sign-up for DayZero", url)
-												const attachment = AttachmentBuilder('./images/crown.png');
+												const attachment = new AttachmentBuilder('./images/crown.png');
 												const embed = new EmbedBuilder()
 												.setColor('Red')
 												.setTitle(`Killfeed Notification`)
@@ -294,7 +294,7 @@ module.exports = {
 											}else {
 												const url = "https://thecodegang.com"
 												const link = hyperlink("Sign-up for DayZero", url)
-												const attachment = AttachmentBuilder('./images/crown.png');
+												const attachment = new AttachmentBuilder('./images/crown.png');
 												const embed = new EmbedBuilder()
 												.setColor('Red')
 												.setTitle(`Killfeed Notification`)
@@ -320,7 +320,7 @@ module.exports = {
 											if (config.showLoc === 1) {
 												const url = "https://thecodegang.com"
 												const link = hyperlink("Sign-up for DayZero", url)
-												const attachment = AttachmentBuilder('./images/crown.png');
+												const attachment = new AttachmentBuilder('./images/crown.png');
 												const embed = new EmbedBuilder()
 												.setColor('Red')
 												.setTitle(`Killfeed Notification`)
@@ -335,7 +335,7 @@ module.exports = {
 											}else {
 												const url = "https://thecodegang.com"
 												const link = hyperlink("Sign-up for DayZero", url)
-												const attachment = AttachmentBuilder('./images/crown.png');
+												const attachment = new AttachmentBuilder('./images/crown.png');
 												const embed = new EmbedBuilder()
 												.setColor('Red')
 												.setTitle(`Killfeed Notification`)
@@ -372,7 +372,7 @@ module.exports = {
 										//Send Killfeed Notification to Discord
 										const url = "https://thecodegang.com"
 										const link = hyperlink("Sign-up for DayZero", url)
-										const attachment = AttachmentBuilder('./images/crown.png');
+										const attachment = new AttachmentBuilder('./images/crown.png');
 										const embed = new EmbedBuilder()
 										.setColor('Red')
 										.setTitle(`Killfeed Notification`)
@@ -389,7 +389,7 @@ module.exports = {
 										//Send Killfeed Notification to Discord
 										const url = "https://thecodegang.com"
 										const link = hyperlink("Sign-up for DayZero", url)
-										const attachment = AttachmentBuilder('./images/crown.png');
+										const attachment = new AttachmentBuilder('./images/crown.png');
 										const embed = new EmbedBuilder()
 										.setColor('Red')
 										.setTitle(`Killfeed Notification`)
@@ -406,7 +406,7 @@ module.exports = {
 										//Send Killfeed Notification to Discord
 										const url = "https://thecodegang.com"
 										const link = hyperlink("Sign-up for DayZero", url)
-										const attachment = AttachmentBuilder('./images/crown.png');
+										const attachment = new AttachmentBuilder('./images/crown.png');
 										const embed = new EmbedBuilder()
 										.setColor('Red')
 										.setTitle(`Killfeed Notification`)
@@ -426,7 +426,7 @@ module.exports = {
 										//Send Killfeed Notification to Discord
 										const url = "https://thecodegang.com"
 										const link = hyperlink("Sign-up for DayZero", url)
-										const attachment = AttachmentBuilder('./images/crown.png');
+										const attachment = new AttachmentBuilder('./images/crown.png');
 										const embed = new EmbedBuilder()
 										.setColor('Red')
 										.setTitle(`Killfeed Notification`)
@@ -443,7 +443,7 @@ module.exports = {
 										//Send Killfeed Notification to Discord
 										const url = "https://thecodegang.com"
 										const link = hyperlink("Sign-up for DayZero", url)
-										const attachment = AttachmentBuilder('./images/crown.png');
+										const attachment = new AttachmentBuilder('./images/crown.png');
 										const embed = new EmbedBuilder()
 										.setColor('Red')
 										.setTitle(`Killfeed Notification`)

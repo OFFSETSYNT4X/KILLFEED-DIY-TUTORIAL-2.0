@@ -1,4 +1,31 @@
 
 
 ******************************************************************************
-AdminLog started on 2023-07-23 at 03:58:48
+AdminLog started on 2023-07-23 at 06:33:01
+09:02:05 | Player "GamingDragon688" is connected (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6)
+09:03:43 | ##### PlayerList log: 1 players
+09:03:43 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9149.9, 3777.0, 223.5>)
+09:03:43 | #####
+09:04:05 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9167.3, 3726.4, 219.8>)[HP: 95] hit by ZmbM_Jacket_magenta into Torso(1) for 5 damage (MeleeZombie)
+09:04:19 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9188.6, 3717.3, 216.7>)[HP: 94.5461] hit by ZmbF_MilkMaidOld_Green into LeftArm(18) for 5 damage (MeleeZombie)
+09:04:25 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9188.1, 3715.7, 216.5>)[HP: 94.7267] hit by ZmbF_MilkMaidOld_Green into LeftArm(18) for 0 damage (Dummy_Light)
+09:04:28 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9187.2, 3714.6, 216.4>)[HP: 94.4071] hit by ZmbF_MilkMaidOld_Green into LeftArm(18) for 5 damage (MeleeZombie)
+09:04:31 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9187.1, 3714.5, 216.4>)[HP: 93.2821] hit by ZmbF_MilkMaidOld_Green into LeftLeg(8) for 4.5 damage (MeleeZombie)
+09:05:07 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9198.2, 3754.1, 219.4>)[HP: 93.8635] hit by ZmbM_JoggerSkinny_Red into RightArm(17) for 5 damage (MeleeZombie)
+09:05:13 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9198.2, 3759.7, 219.6>)[HP: 94.044] hit by ZmbM_VillagerOld_Green into LeftLeg(8) for 0 damage (Dummy_Light)
+09:08:31 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9215.2, 3936.7, 224.8>)[HP: 98.5691] hit by ZmbF_VillagerOld_Blue into LeftLeg(8) for 4.5 damage (MeleeZombie)
+09:08:43 | ##### PlayerList log: 1 players
+09:08:43 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9216.9, 3942.0, 224.8>)
+09:08:43 | #####
+09:10:01 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9188.3, 3969.1, 228.5>)[HP: 100] hit by ZmbF_JoggerSkinny_Red into RightArm(17) for 0 damage (Dummy_Light)
+09:10:48 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9216.3, 3965.2, 227.4>)[HP: 95.5] hit by ZmbM_Jacket_bluechecks into Torso(1) for 4.5 damage (MeleeZombie)
+09:13:43 | ##### PlayerList log: 1 players
+09:13:43 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<9103.3, 4078.3, 253.5>)
+09:13:43 | #####
+09:16:39 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<8611.4, 4217.8, 269.5>) committed suicide
+09:16:39 | Player "GamingDragon688" (DEAD) (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<8611.4, 4217.8, 269.5>) died. Stats> Water: 915.578 Energy: 774.953 Bleed sources: 0
+09:18:43 | ##### PlayerList log: 1 players
+09:18:43 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<8610.6, 4216.8, 269.5>)
+09:18:43 | #####
+09:19:13 | Player "GamingDragon688" (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<8614.8, 4220.1, 269.7>) committed suicide
+09:19:13 | Player "GamingDragon688" (DEAD) (id=ABCA5211BB741FF7BD98FEA59C53A4D5BA81DEC6 pos=<8614.8, 4220.1, 269.7>) died. Stats> Water: 528.436 Energy: 466.842 Bleed sources: 0
