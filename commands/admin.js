@@ -128,24 +128,13 @@ module.exports = {
 		if (subCo === "map") {
 			const guildId = interaction.guildId;
 			if(guildId) {
-				if (guildId != GUILDID) return;
+				// Set link location based on config
 				if (parseInt(config.mapLoc) === 1) {
-					config.mapLoc = 0;
-					fs.writeFileSync('./config.ini', ini.stringify(config, { mapLoc: `0`}))
-					interaction.reply("Killfeed Map set to **Chernaus**")
-					.catch(function (error) {
-						console.log(error);
-					});
-					return;
-				}
-				if (parseInt(config.mapLoc) === 0) {
-					config.mapLoc = 1;
-					fs.writeFileSync('./config.ini', ini.stringify(config, { mapLoc: `1`}))
-					interaction.reply("Killfeed Map set to **Livonia**")
-					.catch(function (error) {
-						console.log(error);
-					});
-					return;
+				    linkLoc = "https://www.izurvive.com/livonia/#location=";
+				} else if (parseInt(config.mapLoc) === 2) {
+				    linkLoc = "https://www.izurvive.com/sakhal/#location=";
+				} else if (parseInt(config.mapLoc) === 0) {
+				    linkLoc = "https://www.izurvive.com/#location=";
 				}
 			}
 		}
