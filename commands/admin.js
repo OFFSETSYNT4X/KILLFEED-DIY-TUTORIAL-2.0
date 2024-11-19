@@ -42,11 +42,12 @@ var phrase1 = ">) killed by ", phrase2 = "AdminLog started on ", phrase3 = "from
 nextDay = false, feedStart = false;
 
 if (parseInt(config.mapLoc) === 1) {
-	linkLoc = "https://www.izurvive.com/livonia/#location="; //LIVONIA
+    linkLoc = "https://www.izurvive.com/livonia/#location=";
+} else if (parseInt(config.mapLoc) === 2) {
+    linkLoc = "https://www.izurvive.com/sakhal/#location=";
+} else if (parseInt(config.mapLoc) === 0) {
+    linkLoc = "https://www.izurvive.com/#location=";
 }
-if (parseInt(config.mapLoc) === 0) {
-	linkLoc = "https://www.izurvive.com/#location="; //CHERNARUS
-};
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -128,15 +129,20 @@ module.exports = {
 		if (subCo === "map") {
 			const guildId = interaction.guildId;
 			if(guildId) {
-				if (guildId != GUILDID) return;
-				// Set link location based on config
-				if (parseInt(config.mapLoc) === 1) {
-				    linkLoc = "https://www.izurvive.com/livonia/#location=";
-				} else if (parseInt(config.mapLoc) === 2) {
-				    linkLoc = "https://www.izurvive.com/sakhal/#location=";
-				} else if (parseInt(config.mapLoc) === 0) {
-				    linkLoc = "https://www.izurvive.com/#location=";
+				config.mapLoc = (parseInt(config.mapLoc) + 1) % 3; // Cycle between 0, 1, and 2
+				fs.writeFileSync('./config.ini', ini.stringify(config));
+				let mapName;
+				switch (config.mapLoc) {
+				    case 1:
+					mapName = "Livonia";
+					break;
+				    case 2:
+					mapName = "Sakhal";
+					break;
+				    default:
+					mapName = "Chernaus";
 				}
+				await interaction.reply(`Killfeed Map set to **${mapName}**`).catch(console.error);
 			}
 		}
 		if (subCo === "setup") {
@@ -485,12 +491,14 @@ module.exports = {
 					});
 					
 					setInterval(function() {
+						config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 						if (parseInt(config.mapLoc) === 1) {
-							linkLoc = "https://www.izurvive.com/livonia/#location="; //LIVONIA
+						    linkLoc = "https://www.izurvive.com/livonia/#location=";
+						} else if (parseInt(config.mapLoc) === 2) {
+						    linkLoc = "https://www.izurvive.com/sakhal/#location=";
+						} else if (parseInt(config.mapLoc) === 0) {
+						    linkLoc = "https://www.izurvive.com/#location=";
 						}
-						if (parseInt(config.mapLoc) === 0) {
-							linkLoc = "https://www.izurvive.com/#location="; //CHERNARUS
-						};
 						
 						if (REGION == "Frankfurt" || REGION == "FRANKFURT") {
 							today = new moment().tz('Europe/Berlin').format();
