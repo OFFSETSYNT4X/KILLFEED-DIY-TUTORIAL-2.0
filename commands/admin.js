@@ -128,6 +128,7 @@ module.exports = {
 		if (subCo === "map") {
 			const guildId = interaction.guildId;
 			if(guildId) {
+				if (guildId != GUILDID) return;
 				// Set link location based on config
 				if (parseInt(config.mapLoc) === 1) {
 				    linkLoc = "https://www.izurvive.com/livonia/#location=";
