@@ -15,67 +15,91 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
 require('dotenv').config();
-var fs = require('fs');
-if (!fs.existsSync("./logs/log.ADM")) {fs.writeFileSync("./logs/log.ADM", "");}
-if (!fs.existsSync("./logs/serverlog.ADM")) {fs.writeFileSync("./logs/serverlog.ADM", "");}
-const { Client, Collection, Intents, MessageAttachment, MessageEmbed } = require('discord.js');
-const { GUILDID, PLATFORM, TOKEN } = require('./config.json');
-const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });//, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, partials: ["MESSAGE", "CHANNEL", "REACTION"] });const nodeoutlook = require('nodejs-nodemailer-outlook');
-const { isNull } = require('util');
+const fs = require('fs');
 const path = require('path');
-var moment = require('moment-timezone');
-var servCheck = GUILDID;
+const { Client, Collection, Intents } = require('discord.js');
+const { GUILDID, TOKEN } = require('./config.json');
+const moment = require('moment-timezone');
+const nodeoutlook = require('nodejs-nodemailer-outlook');
 
+if (!fs.existsSync("./logs/log.ADM")) {
+    fs.writeFileSync("./logs/log.ADM", "");
+}
+if (!fs.existsSync("./logs/serverlog.ADM")) {
+    fs.writeFileSync("./logs/serverlog.ADM", "");
+}
 
-//SETUP SLASH COMMAND HANDLER
+const bot = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MEMBERS
+    ]
+});
+
+let servCheck = GUILDID;
+
+// Setup Slash Command Handler
 bot.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	// Set a new item in the Collection
-	// With the key as the command name and the value as the exported module
-	bot.commands.set(command.data.name, command);
+    const filePath = path.join(commandsPath, file);
+    try {
+        const command = require(filePath);
+        if (command && command.data && command.data.name) {
+            bot.commands.set(command.data.name, command);
+        } else {
+            console.warn(`No commands detected in file: ${filePath}`);
+        }
+    } catch (error) {
+        console.error(`Error loading command file ${filePath}:`, error);
+    }
 }
 
 bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+    if (!interaction.isCommand()) return;
 
-	const command = bot.commands.get(interaction.commandName);
+    const command = bot.commands.get(interaction.commandName);
 
-	if (!command) return;
+    if (!command) return;
 
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+    }
 });
 
-//MESSAGE COMMAND HANDLER
+// Message Command Handler
 bot.on('messageCreate', async message => {
-	if (!message.guild && !message.author && !message.member) return;
-	if (message.author.bot) return; // This closes the rest of the script if the bot sends the message....don't allow Bot to give commands (yet)
-	const guildId = message.guild.id
-	if (servCheck != guildId) return;
-	var adminRole = message.guild.roles.cache.find(r => r.name === 'Admin'), everyoneRole = message.guild.roles.everyone;
-	var adminRoleId = adminRole.id, everyoneRoleId = everyoneRole.id;
+    if (!message.guild || !message.author || !message.member) return;
+    if (message.author.bot) return;
+
+    const guildId = message.guild.id;
+    if (servCheck != guildId) return;
+
+    const adminRole = message.guild.roles.cache.find(r => r.name === 'Admin');
+    const everyoneRole = message.guild.roles.everyone;
+
+    if (!adminRole || !everyoneRole) return;
+
+    const adminRoleId = adminRole.id;
+    const everyoneRoleId = everyoneRole.id;
 });
 
-//Login Discord Bot
-bot.login(TOKEN)
-.catch(function (error) {
+// Login Discord Bot
+bot.login(TOKEN).catch(error => {
     console.log(error);
-})
+});
 
 bot.on('ready', () => {
-	console.info(`Logged in as ${bot.user.tag}!`);
-	console.log('KILLFEED IS ACTIVE!');
+    console.info(`Logged in as ${bot.user.tag}!`);
+    console.log('KILLFEED IS ACTIVE!');
 });
 
-bot.on('error', function (err) {
-    console.log(err)
+bot.on('error', err => {
+    console.log(err);
 });

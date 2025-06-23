@@ -11,15 +11,16 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
-    "axios": "^0.28.0",
+    "axios": "^0.21.4",
     "colors": "^1.4.0",
+    "concat-stream": "^2.0.0",
     "discord-api-types": "^0.33.5",
     "discord.js": "^13.8.0",
     "dotenv": "^8.2.0",
     "ini": "^3.0.0",
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.31",
-    "mongoose": "^6.13.6",
+    "mongoose": "^5.12.5",
     "nodejs-nodemailer-outlook": "^1.2.4",
     "tail": "^2.2.6"
   }

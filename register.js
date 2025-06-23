@@ -27,8 +27,16 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('
 
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	commands.push(command.data.toJSON());
+  try {
+    const command = require(filePath);
+    if (command && command.data && command.data.name) {
+      commands.push(command.data.toJSON());
+    } else {
+        console.warn(`No commands detected in file: ${filePath}`);
+    }
+  } catch (error) {
+      console.error(`Error loading command file ${filePath}:`, error);
+  }
 }
 
 const rest = new REST({version: '10'}).setToken(TOKEN);
