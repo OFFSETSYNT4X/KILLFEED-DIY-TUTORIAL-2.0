@@ -694,6 +694,41 @@ async function downloadLogFile(res) {
     });
 }
 
+async function getLatestADMEntry(jsonObj) {
+    if (
+        !jsonObj ||
+        typeof jsonObj !== "object" ||
+        !jsonObj.data ||
+        !Array.isArray(jsonObj.data.entries)
+    ) {
+        throw new Error("Invalid JSON structure!");
+    }
+    
+    let latestEntry = null;
+    let latestKey = null; 
+
+    for (const entry of jsonObj.data.entries) {
+        // I only care about files that match the ADM‐pattern
+        if (entry.type !== "file" || typeof entry.name !== "string") {
+        continue;
+        }
+
+        const match = entry.name.match(admRegex);
+        if (!match) {
+        continue;
+        }
+
+        const rawStamp = match[1];
+
+        const normalized = rawStamp.replace(/[-_]/g, "");
+
+        if (latestKey === null || normalized > latestKey) {
+        latestKey = normalized;
+        latestEntry = entry;
+        }
+    }
+}
+
 async function setfeed(name, ChanId) {
     if (name == "kfChan") {
         config.kfChan = `${ChanId}`
