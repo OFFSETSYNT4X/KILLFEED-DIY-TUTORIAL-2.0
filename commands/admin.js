@@ -1,4 +1,4 @@
-/* DayZero KillFeed (DZK) DIY Project 2.1
+/* DayZero KillFeed (DZK) DIY Project 2.0
 Copyright (c) 2023 TheCodeGang LLC.
 
 This program is free software: you can redistribute it and/or modify
@@ -68,21 +68,6 @@ const phrases = [
     "[HP: 0] hit by FallDamage",
     ") was teleported from:"
 ];
-
-/* const phrases2 = [
-    " ) repaired",
-    ")Dismantled",
-    ")Built",
-    "] hit by Fence",
-    ") placed", 
-    " is connected (",
-    ") has been disconnected",
-    ">) folded","] hit by TripwireTrap",
-    "] hit by Watchtower",
-    ") has lowered",
-    ") has raised",
-    ") packed"
-]; */
 
 if (PLATFORM == "XBOX" || PLATFORM == "Xbox" || PLATFORM =="xbox") {
     admPlat = '/noftp/dayzxb/config';
@@ -276,7 +261,7 @@ async function handleSetupCommand(interaction) {
                 type: 'text', //This create a text channel, you can make a voice one too, by changing "text" to "voice"
                 parent: parentCategory, //Sets a Parent Catergory for created channel
                 permissionOverwrites: [{ //Set permission overwrites
-                    id: adminRoleId, //To make it be seen by a certain role, user an ID instead
+                    id: adminRoleId, //To make it be seen by a certain role, use a ID instead
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'], //Allow permissions
                     deny: ['ADMINISTRATOR'] //Deny permissions
                 }]
@@ -368,12 +353,15 @@ async function getDetails(interaction) {
             todayRef = today.slice(0, 10);
 
             try {
-                const res = axios.get('https://api.nitrado.net/services/'+`${ID1}`+'/gameservers/file_server/list?dir=/games/'+`${ID2}`+`${admPlat}`,{ responseType: 'application/json',  headers: {'Authorization' : 'Bearer '+`${NITRATOKEN}`, 'Accept': 'application/json'}});
-                if (res.status >= 200 && res.status < 300) {
-                    await downloadLogFile(res);
-                } else {
-                    console.log(res);
-                }
+                logResponse = axios.get('https://api.nitrado.net/services/'+`${ID1}`+'/gameservers/file_server/list?dir=/games/'+`${ID2}`+`${admPlat}`,{ responseType: 'application/json',  headers: {'Authorization' : 'Bearer '+`${NITRATOKEN}`, 'Accept': 'application/json'}})
+                .then((res) => {
+                    if (res.status >= 200 && res.status < 300) {
+                        downloadLogFile(res.data);
+                    } else {
+                        console.log(res);
+                    }
+                });
+                
             } catch (error) {
                 console.error(error);
             }
@@ -429,7 +417,6 @@ async function handleKillfeedNotification(interaction) {
     if (iso[9] && iso[5].includes(phrases[0])) { //PvP Kill
         if (methodVal.includes(phrases[2])) {
             try {
-                // console.log(iso);
                 f4 = methodVal.split(" ");
                 f5 = iso[4].toString().split(/[|" "<(),>]/);
                 f6 = iso[8].toString().split(/[|" "<(),>]/);
@@ -452,7 +439,6 @@ async function handleKillfeedNotification(interaction) {
             }
         }else {
             try {
-                // console.log(iso);
                 f4 = methodVal.split(" ");
                 f5 = iso[4].toString().split(/[|" "<(),>]/);
                 f6 = iso[8].toString().split(/[|" "<(),>]/);
@@ -608,14 +594,14 @@ function pvpEmbed(f0, f1, f2, f3, Vloc) {
 
 function teleportEmbed(interaction, f0, f1, methodVal) {//Restricted Area Teleport Event
     const url = "https://thecodegang.com"
-    //const link = hyperlink("Sign-up for DayZero", url)
+    const link = hyperlink("Sign-up for DayZero", url)
     const attachment = ('./images/crown.png');
     const embed = new MessageEmbed()
     .setColor('0xDD0000')
     .setTitle(`Teleport Notification`)
     .setThumbnail('attachment://crown.png')
     .setDescription(`${f0} **${f1}** ${methodVal}`)
-    //.addField('Get Your Free Killfeed!', `${link}`)
+    .addField('Get Your Free Killfeed!', `${link}`)
     interaction.guild.channels.cache.get(config.teleFeed).send({embeds: [embed], files: [`${attachment}`]})
     .catch(function (error) {
         console.log(error);
@@ -655,7 +641,7 @@ async function downloadLogFile(res) {
     let url1, url2, url3;
     if (PLATFORM.match(/XBOX|xbox|Xbox/i)) {
         admRegex = /^DayZServer_X1_x64_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})\.ADM$/;
-        const latestADM = await getLatestADMEntry(res.data);
+        const latestADM = await getLatestADMEntry(res);
         if (latestADM) {
            url1 = 'https://api.nitrado.net/services/'
            url2 = '/gameservers/file_server/download?file=/games/'
@@ -665,7 +651,7 @@ async function downloadLogFile(res) {
         }
     } else if (PLATFORM.match(/PLAYSTATION|PS4|PS5|playstation|Playstation/i)) {
         admRegex = /^DayZServer_X1_x64_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})\.ADM$/;
-        const latestADM = await getLatestADMEntry(res.data);
+        const latestADM = await getLatestADMEntry(res);
         if (latestADM) {
            url1 = 'https://api.nitrado.net/services/'
            url2 = '/gameservers/file_server/download?file=/games/'
@@ -675,7 +661,7 @@ async function downloadLogFile(res) {
         }
     } else {
         admRegex = /^DayZServer_X1_x64_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})\.ADM$/;
-        const latestADM = await getLatestADMEntry(res.data);
+        const latestADM = await getLatestADMEntry(res);
         if (latestADM) {
            url1 = 'https://api.nitrado.net/services/'
            url2 = '/gameservers/file_server/download?file=/games/'
@@ -703,12 +689,12 @@ async function getLatestADMEntry(jsonObj) {
     ) {
         throw new Error("Invalid JSON structure!");
     }
-    
+
     let latestEntry = null;
     let latestKey = null; 
 
     for (const entry of jsonObj.data.entries) {
-        // I only care about files that match the ADM‐pattern
+        // I only care about files whose name matches the ADM‐pattern
         if (entry.type !== "file" || typeof entry.name !== "string") {
         continue;
         }
@@ -727,6 +713,8 @@ async function getLatestADMEntry(jsonObj) {
         latestEntry = entry;
         }
     }
+    
+    return latestEntry;
 }
 
 async function setfeed(name, ChanId) {
