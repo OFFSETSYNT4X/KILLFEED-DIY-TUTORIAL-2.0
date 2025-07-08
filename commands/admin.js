@@ -217,9 +217,9 @@ async function handleSetupCommand(interaction) {
     const guildId = interaction.guildId;
     if (guildId && guildId === GUILDID) {
         await interaction.channel.send("....").catch(console.error);
-        kfChannel = interaction.guild.channels.cache.find(channel => channel.name.includes("➖》💀-killfeed"));
-        locChannel = interaction.guild.channels.cache.find(channel => channel.name.includes("➖》👀-locations"));
-        alarmChannel = interaction.guild.channels.cache.find(channel => channel.name.includes("➖》🚨-alarm"));
+        kfChannel =  await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》💀-killfeed"));
+        locChannel =  await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》👀-locations"));
+        alarmChannel = await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》🚨-alarm"));
         
         if (kfChannel == null) {
             await interaction.guild.channels.create('➖》💀-killfeed', {
@@ -230,6 +230,7 @@ async function handleSetupCommand(interaction) {
                     deny: ['ADMINISTRATOR']
                 }]
             }).catch(console.error);
+            kfChannel =  await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》💀-killfeed"));
             await setfeed('kfChan', kfChannel.id).catch(function (error) {console.log(error);});
             await interaction.channel.send("Killfeed Channel Created Successfully!").catch(console.error);
         } else {
@@ -240,15 +241,16 @@ async function handleSetupCommand(interaction) {
         if (locChannel == null) {
             await interaction.guild.channels.create('➖》👀-locations', { //Create a channel
                 type: 'text', //This create a text channel, you can make a voice one too, by changing "text" to "voice"
-                parent: parentCategory, //Sets a Parent Catergory for created channel
+                //parent: parentCategory, //Sets a Parent Catergory for created channel
                 permissionOverwrites: [{ //Set permission overwrites
-                    id: everyoneRole, //To make it be seen by a certain role, use a ID instead
+                    id: interaction.guild.roles.everyone, //To make it be seen by a certain role, use a ID instead
                     deny: ['VIEW_CHANNEL'] //Deny permissions
                 }]
             })
             .catch(function (error) {
                 console.log(error);
             });
+            locChannel =  await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》👀-locations"));
             await setfeed('locChan', locChannel.id).catch(function (error) {console.log(error);});
             await interaction.channel.send("Locations Channel Created Successfully!").catch(function (error) {console.log(error);});
         }else{
@@ -259,9 +261,9 @@ async function handleSetupCommand(interaction) {
         if (alarmChannel == null) {
             await interaction.guild.channels.create('➖》🚨-alarm', { //Create a channel
                 type: 'text', //This create a text channel, you can make a voice one too, by changing "text" to "voice"
-                parent: parentCategory, //Sets a Parent Catergory for created channel
+                //parent: parentCategory, //Sets a Parent Catergory for created channel
                 permissionOverwrites: [{ //Set permission overwrites
-                    id: adminRoleId, //To make it be seen by a certain role, use a ID instead
+                    id: interaction.guild.roles.everyone, //To make it be seen by a certain role, use a ID instead
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'], //Allow permissions
                     deny: ['ADMINISTRATOR'] //Deny permissions
                 }]
@@ -269,6 +271,7 @@ async function handleSetupCommand(interaction) {
             .catch(function (error) {
                 console.log(error);
             });
+            alarmChannel = await interaction.guild.channels.cache.find(channel => channel.name.includes("➖》🚨-alarm"));
             await setfeed('alrmChan', alarmChannel.id).catch(function (error) {console.log(error);});
             await interaction.channel.send("Alarm Channel Created Successfully!").catch(function (error) {console.log(error);});
         }else{
